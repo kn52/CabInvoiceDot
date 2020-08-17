@@ -21,5 +21,14 @@ namespace Tests
             double totalFare = cabInvoice.CalculateFare(distance, time);
             Assert.AreEqual(21,totalFare);
         }
+
+        [Test]
+        public void WhenGiven_DistanceAndTime_ShouldReturn_MinimumFare()
+        {
+            double distance = 0.1;
+            int time = 1;
+            double totalFare = cabInvoice.CalculateFare(distance, time);
+            Assert.AreEqual(5, totalFare);
+        }
     }
 }
