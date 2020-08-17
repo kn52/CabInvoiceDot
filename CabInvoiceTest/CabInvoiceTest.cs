@@ -34,8 +34,8 @@ namespace Tests
         [Test]
         public void WhenGivenMultipleRides_ShouldReturn_Summary()
         {
-            Ride[] ride ={ new Ride(2.0,2),
-                new Ride(3,1) };
+            Ride[] ride ={ new Ride(2.0,2,"NORMAL"),
+                new Ride(3,1,"NORMAL") };
             CabInvoiceSummary ExpectedSummary = new CabInvoiceSummary(2, 53);
             CabInvoiceSummary ActualSummary = cabInvoiceService.CalculateMultipleRideFare(ride);
             Assert.AreEqual(ExpectedSummary, ActualSummary);
@@ -45,8 +45,8 @@ namespace Tests
         public void WhenGiven_UserAnd_Rides_ShouldReturn_InvoiceSummary()
         {
             string UserId = "abc@.com";
-            Ride[] ride ={ new Ride(2.0,2),
-                new Ride(3,1) };
+            Ride[] ride ={ new Ride(2.0,2,"NORMAL"),
+                new Ride(3,1,"NORMAL") };
             cabInvoiceService.AddRides(UserId, ride);
             CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(2, 53);
             CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);

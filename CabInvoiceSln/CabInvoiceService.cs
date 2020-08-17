@@ -11,8 +11,13 @@ namespace CabInvoiceSln
             this.cabInvoiceRepository = new CabInvoiceRepository();
         }
 
-        public double CalculateFare(double distance, double time)
+        public double CalculateFare(double distance, double time, string rideType)
         {
+            if(rideType.Equals("PREMIUM"))
+            {
+                return Math.Max((distance * 15 + time * 2), 20);
+            }
+
             return Math.Max((distance * 10 + time * 1), 5);
         }
 
@@ -22,7 +27,7 @@ namespace CabInvoiceSln
             double TotalFare = 0.0;
             foreach(Ride ride in rides)
             {
-                TotalFare += this.CalculateFare(ride.distance, ride.time);
+                TotalFare += this.CalculateFare(ride.Distance, ride.Time,ride.RideType);
             }
 
             return new CabInvoiceSummary(rides.Length,TotalFare);

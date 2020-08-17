@@ -8,13 +8,15 @@ namespace CabInvoiceSln
 {
     public class Ride
     {
-        public double distance;
-        public double time;
+        public double Distance;
+        public double Time;
+        public string RideType;
 
-        public Ride(double distance, double time)
+        public Ride(double distance, double time, string rideType)
         {
-            this.distance = distance;
-            this.time = time;
+            Distance = distance;
+            Time = time;
+            RideType = rideType;
         }
     }
 }
