@@ -1,23 +1,40 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿// <copyright file="CabInvoiceRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace CabInvoiceSln
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    /// <summary>
+    /// Cab Invoice Repository class.
+    /// </summary>
     public class CabInvoiceRepository
     {
-        readonly Dictionary<string, List<Ride>> UserRides = new Dictionary<string, List<Ride>>();
+        private readonly Dictionary<string, List<Ride>> userRides = new Dictionary<string, List<Ride>>();
 
+        /// <summary>
+        /// Add rides.
+        /// </summary>
+        /// <param name="userId">User Id.</param>
+        /// <param name="ride">List of rides.</param>
         public void AddRides(string userId, Ride[] ride)
         {
-            if (!UserRides.ContainsKey(userId))
+            if (!this.userRides.ContainsKey(userId))
             {
-                this.UserRides.Add(userId, new List<Ride>(ride));
+                this.userRides.Add(userId, new List<Ride>(ride));
             }
         }
 
+        /// <summary>
+        /// Get ride list.
+        /// </summary>
+        /// <param name="userId">User Id.</param>
+        /// <returns>List of rides.</returns>
         public Ride[] GetRides(string userId)
         {
-            return UserRides[userId].ToArray();
+            return this.userRides[userId].ToArray();
         }
     }
 }

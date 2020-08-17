@@ -1,8 +1,11 @@
-using CabInvoiceSln;
-using NUnit.Framework;
-
 namespace Tests
 {
+    using CabInvoiceSln;
+    using NUnit.Framework;
+
+    /// <summary>
+    /// Cab Invoice Test.
+    /// </summary>
     public class Tests
     {
         CabInvoiceService cabInvoiceService;
@@ -13,6 +16,9 @@ namespace Tests
             cabInvoiceService = new CabInvoiceService();
         }
 
+        /// <summary>
+        /// Distance and Time to calculate normal fare.
+        /// </summary>
         [Test]
         public void WhenGiven_DistanceAndTime_ShouldReturn_TotalFare()
         {
@@ -22,6 +28,9 @@ namespace Tests
             Assert.AreEqual(21,TotalFare);
         }
 
+        /// <summary>
+        /// Distance and Time to return minimum fare.
+        /// </summary>
         [Test]
         public void WhenGiven_DistanceAndTime_ShouldReturn_MinimumFare()
         {
@@ -31,6 +40,9 @@ namespace Tests
             Assert.AreEqual(5, TotalFare);
         }
 
+        /// <summary>
+        /// Distance and Time to return normal rides summary.
+        /// </summary>
         [Test]
         public void WhenGivenMultipleRides_ShouldReturn_Summary()
         {
@@ -41,6 +53,9 @@ namespace Tests
             Assert.AreEqual(ExpectedSummary, ActualSummary);
         }
 
+        /// <summary>
+        /// Distance and Time to return normal rides summary by user id.
+        /// </summary>
         [Test]
         public void WhenGiven_UserAnd_Rides_ShouldReturn_InvoiceSummary()
         {
@@ -51,8 +66,11 @@ namespace Tests
             CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(2, 53);
             CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
             Assert.AreEqual(ExceptedSummary, ActualSummary);
-        }       
+        }
 
+        /// <summary>
+        /// Distance and Time to return premium rides summary by user id.
+        /// </summary>
         [Test]
         public void whengiven_UserAnd_RideswithPremium_ShouldReturn_InvoiceSummary()
         {
@@ -66,6 +84,9 @@ namespace Tests
             Assert.AreEqual(ExceptedSummary, ActualSummary);
         }
 
+        /// <summary>
+        /// Distance and Time to return normal and premium rides summary by user id.
+        /// </summary>
         [Test]
         public void whengiven_UserAnd_RideswithNormalAndPremium_ShouldReturn_InvoiceSummary()
         {
