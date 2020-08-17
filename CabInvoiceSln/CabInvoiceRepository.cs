@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CabInvoiceSln
 {
     public class CabInvoiceRepository
     {
-        Dictionary<string, List<Ride>> user = new Dictionary<string, List<Ride>>();
+        readonly Dictionary<string, List<Ride>> UserRides = new Dictionary<string, List<Ride>>();
 
-        public void addRides(String userId, Ride[] ride)
+        public void AddRides(string userId, Ride[] ride)
         {
-            List<Ride> rides = this.user[userId];
-            if (rides == null)
-                user.Add(userId, new List<Ride>(ride));
+            if (!UserRides.ContainsKey(userId))
+            {
+                this.UserRides.Add(userId, new List<Ride>(ride));
+            }
         }
 
-        public Ride[] GetRides(String userId)
+        public Ride[] GetRides(string userId)
         {
-            return user[userId].ToArray();
+            return UserRides[userId].ToArray();
         }
     }
 }

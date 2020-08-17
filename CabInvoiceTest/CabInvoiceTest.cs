@@ -40,5 +40,17 @@ namespace Tests
             CabInvoiceSummary ActualSummary = cabInvoiceService.CalculateMultipleRideFare(ride);
             Assert.AreEqual(ExpectedSummary, ActualSummary);
         }
+
+        [Test]
+        public void WhenGiven_UserAnd_Rides_ShouldReturn_InvoiceSummary()
+        {
+            string UserId = "abc@.com";
+            Ride[] ride ={ new Ride(2.0,2),
+                new Ride(3,1) };
+            cabInvoiceService.AddRides(UserId, ride);
+            CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(2, 53);
+            CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
+            Assert.AreEqual(ExceptedSummary, ActualSummary);
+        }       
     }
 }

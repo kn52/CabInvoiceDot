@@ -28,12 +28,12 @@ namespace CabInvoiceSln
             return new CabInvoiceSummary(rides.Length,TotalFare);
         }
 
-        public void AddRides(String userId, Ride[] ride)
+        public void AddRides(string userId, Ride[] ride)
         {
-            this.cabInvoiceRepository.addRides(userId, ride);
+            this.cabInvoiceRepository.AddRides(userId, ride);
         }
 
-        public CabInvoiceSummary GetInvoiceSummary(String userId)
+        public CabInvoiceSummary GetInvoiceSummary(string userId)
         {
             return this.CalculateMultipleRideFare(cabInvoiceRepository.GetRides(userId));
         }
