@@ -32,12 +32,13 @@ namespace Tests
         }
 
         [Test]
-        public void WhenGivenMultipleRides_SHouldReturn_Summary()
+        public void WhenGivenMultipleRides_ShouldReturn_Summary()
         {
             Ride[] ride ={ new Ride(2.0,2),
                 new Ride(3,1) };
-            double TotalFare = cabInvoiceService.CalculateMultipleRideFare(ride);
-            Assert.AreEqual(53, TotalFare);
+            CabInvoiceSummary ExpectedSummary = new CabInvoiceSummary(2, 53);
+            CabInvoiceSummary ActualSummary = cabInvoiceService.CalculateMultipleRideFare(ride);
+            Assert.AreEqual(ExpectedSummary, ActualSummary);
         }
     }
 }

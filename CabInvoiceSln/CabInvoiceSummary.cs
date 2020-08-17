@@ -18,5 +18,14 @@ namespace CabInvoiceSln
             this.totalFare = totalFare;
             this.averageFare = totalFare / numberOfRides;
         }
+
+        public override bool Equals(object obj)
+        {
+            var summary = obj as CabInvoiceSummary;
+            return summary != null &&
+                   averageFare == summary.averageFare &&
+                   numberOfRides == summary.numberOfRides &&
+                   totalFare == summary.totalFare;
+        }
     }
 }

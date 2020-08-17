@@ -9,7 +9,7 @@ namespace CabInvoiceSln
             return Math.Max((distance * 10 + time * 1), 5);
         }
 
-        public double CalculateMultipleRideFare(Ride[] rides)
+        public CabInvoiceSummary CalculateMultipleRideFare(Ride[] rides)
         {
             double TotalFare = 0.0;
             foreach(Ride ride in rides)
@@ -17,7 +17,7 @@ namespace CabInvoiceSln
                 TotalFare += this.CalculateFare(ride.distance, ride.time);
             }
 
-            return TotalFare;
+            return new CabInvoiceSummary(rides.Length,TotalFare);
         } 
     }
 }
