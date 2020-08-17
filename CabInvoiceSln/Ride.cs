@@ -14,9 +14,9 @@ namespace CabInvoiceSln
 
         public Ride(double distance, double time, string rideType)
         {
-            Distance = distance;
-            Time = time;
-            RideType = rideType;
+            this.Distance = distance;
+            this.Time = time;
+            this.RideType = rideType;
         }
     }
 }

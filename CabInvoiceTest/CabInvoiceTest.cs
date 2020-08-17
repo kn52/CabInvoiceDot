@@ -65,5 +65,21 @@ namespace Tests
             CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
             Assert.AreEqual(ExceptedSummary, ActualSummary);
         }
+
+        [Test]
+        public void whengiven_UserAnd_RideswithNormalAndPremium_ShouldReturn_InvoiceSummary()
+        {
+            string UserId = "abc@.com";
+
+            Ride[] ride ={ new Ride(2.0,2,"PREMIUM"),
+                new Ride(4.0,3,"NORMAL"),
+                new Ride(4.0,3,"PREMIUM"),
+                new Ride(6.0,3,"NORMAL"),
+                new Ride(3,1,"PREMIUM") };
+            cabInvoiceService.AddRides(UserId, ride);
+            CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(5, 253);
+            CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
+            Assert.AreEqual(ExceptedSummary, ActualSummary);
+        }
     }
 }
