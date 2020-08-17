@@ -5,12 +5,12 @@ namespace Tests
 {
     public class Tests
     {
-        CabInvoice cabInvoice;
+        CabInvoiceService cabInvoiceService;
 
         [SetUp]
         public void Setup()
         {
-            cabInvoice = new CabInvoice();
+            cabInvoiceService = new CabInvoiceService();
         }
 
         [Test]
@@ -18,8 +18,8 @@ namespace Tests
         {
             double distance = 2;
             int time = 1;
-            double totalFare = cabInvoice.CalculateFare(distance, time);
-            Assert.AreEqual(21,totalFare);
+            double TotalFare = cabInvoiceService.CalculateFare(distance, time);
+            Assert.AreEqual(21,TotalFare);
         }
 
         [Test]
@@ -27,8 +27,17 @@ namespace Tests
         {
             double distance = 0.1;
             int time = 1;
-            double totalFare = cabInvoice.CalculateFare(distance, time);
-            Assert.AreEqual(5, totalFare);
+            double TotalFare = cabInvoiceService.CalculateFare(distance, time);
+            Assert.AreEqual(5, TotalFare);
+        }
+
+        [Test]
+        public void WhenGivenMultipleRides_SHouldReturn_Summary()
+        {
+            Ride[] ride ={ new Ride(2.0,2),
+                new Ride(3,1) };
+            double TotalFare = cabInvoiceService.CalculateMultipleRideFare(ride);
+            Assert.AreEqual(53, TotalFare);
         }
     }
 }
