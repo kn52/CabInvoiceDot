@@ -17,7 +17,7 @@ namespace CabInvoiceSln
             {
                 return Math.Max((distance * 15 + time * 2), 20);
             }
-
+            
             return Math.Max((distance * 10 + time * 1), 5);
         }
 

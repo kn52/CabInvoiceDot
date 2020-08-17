@@ -18,7 +18,7 @@ namespace Tests
         {
             double distance = 2;
             int time = 1;
-            double TotalFare = cabInvoiceService.CalculateFare(distance, time);
+            double TotalFare = cabInvoiceService.CalculateFare(distance, time, "NORMAL");
             Assert.AreEqual(21,TotalFare);
         }
 
@@ -27,7 +27,7 @@ namespace Tests
         {
             double distance = 0.1;
             int time = 1;
-            double TotalFare = cabInvoiceService.CalculateFare(distance, time);
+            double TotalFare = cabInvoiceService.CalculateFare(distance, time, "NORMAL");
             Assert.AreEqual(5, TotalFare);
         }
 
@@ -52,5 +52,18 @@ namespace Tests
             CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
             Assert.AreEqual(ExceptedSummary, ActualSummary);
         }       
+
+        [Test]
+        public void whengiven_UserAnd_RideswithPremium_ShouldReturn_InvoiceSummary()
+        {
+            string UserId = "abc@.com";
+
+            Ride[] ride={ new Ride(2.0,2,"PREMIUM"),
+                new Ride(3,1,"PREMIUM") };
+            cabInvoiceService.AddRides(UserId, ride);
+            CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(2, 81);
+            CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
+            Assert.AreEqual(ExceptedSummary, ActualSummary);
+        }
     }
 }
