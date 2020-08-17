@@ -17,7 +17,7 @@ namespace CabInvoiceSln
                 user.Add(userId, new List<Ride>(ride));
         }
 
-        public Ride[] getRides(String userId)
+        public Ride[] GetRides(String userId)
         {
             return user[userId].ToArray();
         }
