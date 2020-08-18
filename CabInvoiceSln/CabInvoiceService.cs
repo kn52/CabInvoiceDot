@@ -5,13 +5,14 @@
 namespace CabInvoiceSln
 {
     using System;
+    using System.Linq;
 
     /// <summary>
     /// Cab Invoice Service class.
     /// </summary>
     public class CabInvoiceService
     {
-        private CabInvoiceRepository cabInvoiceRepository;
+        private readonly CabInvoiceRepository cabInvoiceRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CabInvoiceService"/> class.
@@ -30,12 +31,8 @@ namespace CabInvoiceSln
         /// <returns>Total fare of a ride.</returns>
         public double CalculateFare(double distance, double time, string rideType)
         {
-            if (rideType.Equals("PREMIUM"))
-            {
-                return Math.Max((distance * 15) + (time * 2), 20);
-            }
-
-            return Math.Max((distance * 10) + (time * 1), 5);
+            return rideType.Equals("PREMIUM") ? Math.Max((distance * 15) + (time * 2), 20)
+                : rideType.Equals("NORMAL") ? Math.Max((distance * 10) + (time * 1), 5) : 0;
         }
 
         /// <summary>
@@ -45,13 +42,8 @@ namespace CabInvoiceSln
         /// <returns>Summary of rides.</returns>
         public CabInvoiceSummary CalculateMultipleRideFare(Ride[] rides)
         {
-            double totalFare = 0.0;
-            foreach (Ride ride in rides)
-            {
-                totalFare += this.CalculateFare(ride.Distance, ride.Time, ride.RideType);
-            }
-
-            return new CabInvoiceSummary(rides.Length, totalFare);
+            return new CabInvoiceSummary(rides.Length, rides.ToList()
+                .Sum(ride => this.CalculateFare(ride.Distance, ride.Time, ride.RideType)));
         }
 
         /// <summary>

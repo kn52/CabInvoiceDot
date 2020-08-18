@@ -43,8 +43,8 @@ namespace CabInvoiceSln
         /// <returns>Boolean true or false.</returns>
         public override bool Equals(object obj)
         {
-            var summary = obj as CabInvoiceSummary;
-            return summary != null &&
+            CabInvoiceSummary summary = obj as CabInvoiceSummary;
+            return (obj as CabInvoiceSummary) != null &&
                    this.AverageFare == summary.AverageFare &&
                    this.NumberOfRides == summary.NumberOfRides &&
                    this.TotalFare == summary.TotalFare;
@@ -56,11 +56,7 @@ namespace CabInvoiceSln
         /// <returns>Hash code.</returns>
         public override int GetHashCode()
         {
-            var hashCode = 1576399205;
-            hashCode = (hashCode * -1521134295) + this.AverageFare.GetHashCode();
-            hashCode = (hashCode * -1521134295) + this.NumberOfRides.GetHashCode();
-            hashCode = (hashCode * -1521134295) + this.TotalFare.GetHashCode();
-            return hashCode;
+            return 0;
         }
     }
 }

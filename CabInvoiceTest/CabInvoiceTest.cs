@@ -23,7 +23,7 @@ namespace Tests
         public void WhenGiven_DistanceAndTime_ShouldReturn_TotalFare()
         {
             double distance = 2;
-            int time = 1;
+            double time = 1.0;
             double TotalFare = cabInvoiceService.CalculateFare(distance, time, "NORMAL");
             Assert.AreEqual(21,TotalFare);
         }
@@ -35,7 +35,7 @@ namespace Tests
         public void WhenGiven_DistanceAndTime_ShouldReturn_MinimumFare()
         {
             double distance = 0.1;
-            int time = 1;
+            double time = 1.0;
             double TotalFare = cabInvoiceService.CalculateFare(distance, time, "NORMAL");
             Assert.AreEqual(5, TotalFare);
         }
@@ -47,7 +47,7 @@ namespace Tests
         public void WhenGivenMultipleRides_ShouldReturn_Summary()
         {
             Ride[] ride ={ new Ride(2.0,2,"NORMAL"),
-                new Ride(3,1,"NORMAL") };
+                new Ride(3.0,1,"NORMAL") };
             CabInvoiceSummary ExpectedSummary = new CabInvoiceSummary(2, 53);
             CabInvoiceSummary ActualSummary = cabInvoiceService.CalculateMultipleRideFare(ride);
             Assert.AreEqual(ExpectedSummary, ActualSummary);
@@ -61,7 +61,7 @@ namespace Tests
         {
             string UserId = "abc@.com";
             Ride[] ride ={ new Ride(2.0,2,"NORMAL"),
-                new Ride(3,1,"NORMAL") };
+                new Ride(3.0,1,"NORMAL") };
             cabInvoiceService.AddRides(UserId, ride);
             CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(2, 53);
             CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
@@ -72,12 +72,12 @@ namespace Tests
         /// Distance and Time to return premium rides summary by user id.
         /// </summary>
         [Test]
-        public void whengiven_UserAnd_RideswithPremium_ShouldReturn_InvoiceSummary()
+        public void WhenGiven_UserAnd_RideswithPremium_ShouldReturn_InvoiceSummary()
         {
             string UserId = "abc@.com";
 
             Ride[] ride={ new Ride(2.0,2,"PREMIUM"),
-                new Ride(3,1,"PREMIUM") };
+                new Ride(3.0,1,"PREMIUM") };
             cabInvoiceService.AddRides(UserId, ride);
             CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(2, 81);
             CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);
@@ -88,7 +88,7 @@ namespace Tests
         /// Distance and Time to return normal and premium rides summary by user id.
         /// </summary>
         [Test]
-        public void whengiven_UserAnd_RideswithNormalAndPremium_ShouldReturn_InvoiceSummary()
+        public void WhenGiven_UserAnd_RideswithNormalAndPremium_ShouldReturn_InvoiceSummary()
         {
             string UserId = "abc@.com";
 
@@ -96,7 +96,7 @@ namespace Tests
                 new Ride(4.0,3,"NORMAL"),
                 new Ride(4.0,3,"PREMIUM"),
                 new Ride(6.0,3,"NORMAL"),
-                new Ride(3,1,"PREMIUM") };
+                new Ride(3.0,1,"PREMIUM") };
             cabInvoiceService.AddRides(UserId, ride);
             CabInvoiceSummary ExceptedSummary = new CabInvoiceSummary(5, 253);
             CabInvoiceSummary ActualSummary = cabInvoiceService.GetInvoiceSummary(UserId);

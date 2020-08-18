@@ -21,7 +21,7 @@ namespace CabInvoiceSln
         /// <param name="ride">List of rides.</param>
         public void AddRides(string userId, Ride[] ride)
         {
-            if (!this.userRides.ContainsKey(userId))
+            if (!this.userRides.Any(key => key.Key == userId))
             {
                 this.userRides.Add(userId, new List<Ride>(ride));
             }
