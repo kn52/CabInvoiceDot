@@ -44,8 +44,8 @@ namespace CabInvoiceSln.Exception
         }
 
         /// <summary>
-        /// Gets or sets type exception.
+        /// Gets type exception.
         /// </summary>
-        public ExceptionType TypeException { get; set; }
+        public ExceptionType TypeException { get; }
     }
 }

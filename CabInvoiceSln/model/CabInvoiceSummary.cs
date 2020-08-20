@@ -10,21 +10,6 @@ namespace CabInvoiceSln.Model
     public class CabInvoiceSummary
     {
         /// <summary>
-        /// Average total fare.
-        /// </summary>
-        public double AverageFare;
-
-        /// <summary>
-        /// Number of rides.
-        /// </summary>
-        public double NumberOfRides;
-
-        /// <summary>
-        /// Total fare.
-        /// </summary>
-        public double TotalFare;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="CabInvoiceSummary"/> class.
         /// </summary>
         /// <param name="numberOfRides">Number of rides.</param>
@@ -35,6 +20,21 @@ namespace CabInvoiceSln.Model
             this.TotalFare = totalFare;
             this.AverageFare = totalFare / numberOfRides;
         }
+
+        /// <summary>
+        /// Gets average fare.
+        /// </summary>
+        public double AverageFare { get; }
+
+        /// <summary>
+        /// Gets no of rides.
+        /// </summary>
+        public double NumberOfRides { get; }
+
+        /// <summary>
+        /// Gets total fare.
+        /// </summary>
+        public double TotalFare { get; }
 
         /// <summary>
         /// Equals method.

@@ -12,17 +12,17 @@ namespace CabInvoiceSln.Model
         /// <summary>
         /// Distance.
         /// </summary>
-        public double Distance;
+        private readonly double distance;
 
         /// <summary>
         /// Total time.
         /// </summary>
-        public double Time;
+        private readonly double time;
 
         /// <summary>
         /// Ride.
         /// </summary>
-        public string RideType;
+        private readonly string rideType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Ride"/> class.
@@ -36,5 +36,20 @@ namespace CabInvoiceSln.Model
             this.Time = time;
             this.RideType = rideType;
         }
+
+        /// <summary>
+        /// Gets distance travel.
+        /// </summary>
+        public double Distance { get; }
+
+        /// <summary>
+        /// Gets time taken.
+        /// </summary>
+        public double Time { get; }
+
+        /// <summary>
+        /// Gets type of ride.
+        /// </summary>
+        public string RideType { get; }
     }
 }

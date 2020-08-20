@@ -15,8 +15,14 @@ namespace CabInvoiceSln.Repository
     /// </summary>
     public class CabInvoiceRepository
     {
+        /// <summary>
+        /// Email regex expression for email verification.
+        /// </summary>
         private readonly Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 
+        /// <summary>
+        /// Dictionary of list of rides along with userid as key.
+        /// </summary>
         private readonly Dictionary<string, List<Ride>> userRides = new Dictionary<string, List<Ride>>();
 
         /// <summary>
