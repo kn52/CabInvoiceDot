@@ -47,8 +47,12 @@ namespace CabInvoiceSln.Repository
         /// </summary>
         /// <param name="userId">User Id.</param>
         /// <returns>List of rides.</returns>
-        public Ride[] GetRides(string userId) => this.userRides.Keys.Any(key => key == userId) ? this.userRides[userId].ToArray()
-                : throw new CabInvoiceException("No Such Rides", CabInvoiceException.ExceptionType.NO_RIDE_FOUND);
+        public Ride[] GetRides(string userId)
+        {
+            bool a = this.userRides.Keys.Any(key => key == userId);
+            return a ? this.userRides[userId].ToArray()
+: throw new CabInvoiceException("No Such Rides", CabInvoiceException.ExceptionType.NO_RIDE_FOUND);
+        }
 
         /// <summary>
         /// Validating user.
