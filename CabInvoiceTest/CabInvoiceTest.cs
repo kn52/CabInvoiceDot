@@ -162,5 +162,19 @@ namespace Tests
             var ExpectedException = CabInvoiceException.ExceptionType.INVALID_RYDE_TYPE;
             Assert.AreEqual(ExpectedException, ActualException.TypeException);
         }
+
+        [Test]
+        public void WhenGiven_UserAnd_NotAddedRideswithNormalOrPremiumRideNull_ShouldThrow_Exception()
+        {
+            string UserId = "abd@u.com";
+
+            Ride[] ride ={ new Ride(2.0,2,RideType.PREMIUM),
+                new Ride(4.0,3,RideType.NORMAL),
+                new Ride(4.0,3,null), };
+            var ActualException = Assert.Throws<CabInvoiceException>(
+                () => cabInvoiceService.GetInvoiceSummary(UserId));
+            var ExpectedException = CabInvoiceException.ExceptionType.NO_RIDE_FOUND;
+            Assert.AreEqual(ExpectedException, ActualException.TypeException);
+        }
     }
 }
