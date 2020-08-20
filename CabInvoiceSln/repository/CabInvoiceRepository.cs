@@ -4,6 +4,7 @@
 
 namespace CabInvoiceSln.Repository
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -32,11 +33,7 @@ namespace CabInvoiceSln.Repository
         /// <param name="ride">List of rides.</param>
         public void AddRides(string userId, Ride[] ride)
         {
-            if (!this.regex.IsMatch(userId))
-            {
-                throw new CabInvoiceException("Invalid User Id", CabInvoiceException.ExceptionType.INVALID_USERID);
-            }
-
+            this.ValidUserId(userId);
             if (this.userRides.Keys.Any(key => key == userId))
             {
                 this.userRides[userId].AddRange(new List<Ride>(ride));
@@ -52,5 +49,22 @@ namespace CabInvoiceSln.Repository
         /// <returns>List of rides.</returns>
         public Ride[] GetRides(string userId) => this.userRides.Keys.Any(key => key == userId) ? this.userRides[userId].ToArray()
                 : throw new CabInvoiceException("No Such Rides", CabInvoiceException.ExceptionType.NO_RIDE_FOUND);
+
+        /// <summary>
+        /// Validating user.
+        /// </summary>
+        /// <param name="userId">User Id to validate.</param>
+        private void ValidUserId(string userId)
+        {
+            if (userId == null)
+            {
+                throw new CabInvoiceException("Null User Id", CabInvoiceException.ExceptionType.NULL_USERID);
+            }
+
+            if (!this.regex.IsMatch(userId))
+            {
+                throw new CabInvoiceException("Invalid User Id", CabInvoiceException.ExceptionType.INVALID_USERID);
+            }
+        }
     }
 }

@@ -38,6 +38,11 @@ namespace CabInvoiceSln.Exception
             INVALID_USERID,
 
             /// <summary>
+            /// Null user id found.
+            /// </summary>
+            NULL_USERID,
+
+            /// <summary>
             /// Invalid rides found.
             /// </summary>
             NO_RIDE_FOUND,
