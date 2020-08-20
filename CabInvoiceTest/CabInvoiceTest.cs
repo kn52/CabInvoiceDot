@@ -131,6 +131,20 @@ namespace Tests
                 () => cabInvoiceService.AddRides(UserId, ride));
             var ExpectedException = CabInvoiceException.ExceptionType.NULL_USERID;
             Assert.AreEqual(ExpectedException, ActualException.TypeException);
-        }      
+        }
+
+        [Test]
+        public void WhenGiven_UserAsEmptyAnd_RideswithNormalAndPremium_ShouldReturn_InvoiceSummary()
+        {
+            string UserId = "";
+
+            Ride[] ride ={ new Ride(2.0,2,RideType.PREMIUM),
+                new Ride(4.0,3,RideType.NORMAL),
+                new Ride(4.0,3,RideType.PREMIUM), };
+            var ActualException = Assert.Throws<CabInvoiceException>(
+                () => cabInvoiceService.AddRides(UserId, ride));
+            var ExpectedException = CabInvoiceException.ExceptionType.INVALID_USERID;
+            Assert.AreEqual(ExpectedException, ActualException.TypeException);
+        }
     }
 }
