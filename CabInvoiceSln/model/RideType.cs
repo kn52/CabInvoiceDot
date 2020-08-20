@@ -9,7 +9,6 @@ namespace CabInvoiceSln.Model
     /// </summary>
     public class RideType
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="RideType"/> class.
         /// </summary>

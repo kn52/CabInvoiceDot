@@ -37,10 +37,12 @@ namespace CabInvoiceSln.Repository
                 throw new CabInvoiceException("Invalid User Id", CabInvoiceException.ExceptionType.INVALID_USERID);
             }
 
-            if (!this.userRides.Keys.Any(key => key == userId))
+            if (this.userRides.Keys.Any(key => key == userId))
             {
-                this.userRides.Add(userId, new List<Ride>(ride));
+                this.userRides[userId].AddRange(new List<Ride>(ride));
             }
+
+            this.userRides.Add(userId, new List<Ride>(ride));
         }
 
         /// <summary>
