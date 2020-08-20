@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace CabInvoiceSln
+namespace CabInvoiceSln.Model
 {
     /// <summary>
     /// Cab Invoice Summary class.

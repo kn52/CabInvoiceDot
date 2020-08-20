@@ -2,16 +2,21 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace CabInvoiceSln
+namespace CabInvoiceSln.Repository
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
+    using CabInvoiceSln.Exception;
+    using CabInvoiceSln.Model;
 
     /// <summary>
     /// Cab Invoice Repository class.
     /// </summary>
     public class CabInvoiceRepository
     {
+        private readonly Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+
         private readonly Dictionary<string, List<Ride>> userRides = new Dictionary<string, List<Ride>>();
 
         /// <summary>
@@ -21,7 +26,12 @@ namespace CabInvoiceSln
         /// <param name="ride">List of rides.</param>
         public void AddRides(string userId, Ride[] ride)
         {
-            if (!this.userRides.Any(key => key.Key == userId))
+            if (!this.regex.IsMatch(userId))
+            {
+                throw new CabInvoiceException("Invalid User Id", CabInvoiceException.ExceptionType.INVALID_USERID);
+            }
+
+            if (!this.userRides.Keys.Any(key => key == userId))
             {
                 this.userRides.Add(userId, new List<Ride>(ride));
             }
@@ -32,9 +42,7 @@ namespace CabInvoiceSln
         /// </summary>
         /// <param name="userId">User Id.</param>
         /// <returns>List of rides.</returns>
-        public Ride[] GetRides(string userId)
-        {
-            return this.userRides[userId].ToArray();
-        }
+        public Ride[] GetRides(string userId) => this.userRides.Keys.Any(key => key == userId) ? this.userRides[userId].ToArray()
+                : throw new CabInvoiceException("No Such Rides", CabInvoiceException.ExceptionType.NO_RIDE_FOUND);
     }
 }

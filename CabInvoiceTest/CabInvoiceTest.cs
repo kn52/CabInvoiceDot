@@ -1,6 +1,7 @@
 namespace Tests
 {
     using CabInvoiceSln;
+    using CabInvoiceSln.Model;
     using NUnit.Framework;
 
     /// <summary>
@@ -59,7 +60,7 @@ namespace Tests
         [Test]
         public void WhenGiven_UserAnd_Rides_ShouldReturn_InvoiceSummary()
         {
-            string UserId = "abc@.com";
+            string UserId = "abc@cb.com";
             Ride[] ride ={ new Ride(2.0,2,"NORMAL"),
                 new Ride(3.0,1,"NORMAL") };
             cabInvoiceService.AddRides(UserId, ride);
@@ -74,7 +75,7 @@ namespace Tests
         [Test]
         public void WhenGiven_UserAnd_RideswithPremium_ShouldReturn_InvoiceSummary()
         {
-            string UserId = "abc@.com";
+            string UserId = "def@gh.com";
 
             Ride[] ride={ new Ride(2.0,2,"PREMIUM"),
                 new Ride(3.0,1,"PREMIUM") };
@@ -90,7 +91,7 @@ namespace Tests
         [Test]
         public void WhenGiven_UserAnd_RideswithNormalAndPremium_ShouldReturn_InvoiceSummary()
         {
-            string UserId = "abc@.com";
+            string UserId = "abd@u.com";
 
             Ride[] ride ={ new Ride(2.0,2,"PREMIUM"),
                 new Ride(4.0,3,"NORMAL"),
