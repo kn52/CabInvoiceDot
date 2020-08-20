@@ -32,9 +32,9 @@ namespace CabInvoiceSln
         /// <param name="time">Time Taken to travel.</param>
         /// <param name="rideType">Type of ride.</param>
         /// <returns>Total fare of a ride.</returns>
-        public double CalculateFare(double distance, double time, string rideType) => rideType.Equals("PREMIUM")
-            ? Math.Max((distance * 15) + (time * 2), 20) : rideType.Equals("NORMAL") ? Math.Max((distance * 10) + (time * 1), 5)
-              : throw new CabInvoiceException("Invalid Ride Type", CabInvoiceException.ExceptionType.INVALID_RYDE_TYPE);
+        public double CalculateFare(double distance, double time, RideType rideType) => rideType != null
+            ? Math.Max((distance * rideType.FarePerKm) + (time * rideType.FarePerMinute), rideType.MinimumFare)
+            : throw new CabInvoiceException("Invalid Ride Type", CabInvoiceException.ExceptionType.INVALID_RYDE_TYPE);
 
         /// <summary>
         /// Calculate fare for multiple rides.
