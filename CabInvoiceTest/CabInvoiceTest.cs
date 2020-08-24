@@ -3,7 +3,6 @@ namespace Tests
     using CabInvoiceSln;
     using CabInvoiceSln.Exception;
     using CabInvoiceSln.Model;
-    using CabInvoiceSln.Repository;
     using NUnit.Framework;
 
     /// <summary>

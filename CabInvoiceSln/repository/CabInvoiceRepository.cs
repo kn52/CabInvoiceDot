@@ -4,7 +4,6 @@
 
 namespace CabInvoiceSln.Repository
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -49,9 +48,8 @@ namespace CabInvoiceSln.Repository
         /// <returns>List of rides.</returns>
         public Ride[] GetRides(string userId)
         {
-            bool a = this.userRides.Keys.Any(key => key == userId);
-            return a ? this.userRides[userId].ToArray()
-: throw new CabInvoiceException("No Such Rides", CabInvoiceException.ExceptionType.NO_RIDE_FOUND);
+            return this.userRides.Keys.Any(key => key == userId) ? this.userRides[userId].ToArray()
+                : throw new CabInvoiceException("No Such Rides", CabInvoiceException.ExceptionType.NO_RIDE_FOUND);
         }
 
         /// <summary>
